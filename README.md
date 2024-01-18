@@ -31,7 +31,7 @@ npm (or yarn)
 ## Installation
 
 Clone the repository:
-git clone https://github.com/your-username/jasmine.git
+git clone https://github.com/sxhmkoul/jasmine.git
 
 Navigate to the project directory:
 cd jasmine
