@@ -1,0 +1,1 @@
+export const FACTS_COLLECTION_ID = 'uxkiz1s';

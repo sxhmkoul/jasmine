@@ -1,4 +1,5 @@
-@primary-bg: #83B13B;
+@primary-bg: #83b13b;
+@love-bg: #e34c4c;
 
 .logo {
   font-weight: 400;
@@ -8,4 +9,48 @@
   img {
     width: 20px;
   }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+
+  &__column {
+    flex-direction: column;
+  }
+
+  &__gap {
+    gap: 1rem;
+  }
+}
+
+.font {
+  &__xl {
+    font-size: 6rem;
+  }
+}
+
+.position {
+  &__relative {
+    position: relative;
+  }
+
+  &__absolute {
+    position: absolute;
+  }
+}
+
+.tag {
+  align-items: center;
+  display: flex;
+  top: 7px;
+  right: 8px;
+
+  img {
+    width: 17px;
+  }
+}
+
+.w-100 {
+  width: 100%;
 }

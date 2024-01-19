@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <HeaderComponent />
+    <header-component />
     <router-view></router-view>
   </div>
 </template>
@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style lang="less">
+@import "../src/styles/style.less";
 body {
   margin: 0;
   padding: 0;
@@ -24,5 +25,6 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
+  background-color: @primary-bg;
 }
 </style>
