@@ -27,7 +27,7 @@ export default {
 @import "../../styles/style.less";
 
 header {
-  background-color: @primary-bg;
+  background-color: @primary-bg-dark;
   display: flex;
   justify-content: space-around;
   align-items: center;

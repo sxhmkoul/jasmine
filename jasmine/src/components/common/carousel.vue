@@ -2,7 +2,11 @@
   <div class="carousel-wrapper" v-if="data.length">
     <VueSlickCarousel v-bind="settings" :arrows="showArrows">
       <div class="image-wrapper" :key="slide" v-for="slide in data">
-        <img :src="slide" alt="" />
+        <img v-if="!slide.includes('player')" :src="slide" alt="" />
+        <video id="video" v-else :src="slide" :controls="false" :autoplay="true" :loop="true" :muted="true">
+          <!-- <source :src="slide" type="video/mp4" />
+          Your browser does not support the video tag. -->
+        </video>
       </div>
     </VueSlickCarousel>
   </div>
@@ -20,7 +24,7 @@ export default {
   data() {
     return {
       settings: {
-        autoplaySpeed: 5 * 1000,
+        autoplaySpeed: this.autoplay * 1000,
         autoplay: !!this.autoplay,
         arrows: false,
         dots: false,
@@ -66,6 +70,10 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  video {
+    width: 100%;
   }
 }
 </style>

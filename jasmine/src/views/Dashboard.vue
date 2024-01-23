@@ -1,32 +1,12 @@
 <template>
   <div class="dashboard-wrapper">
-    <div class="hero-widgets">
-      <div class="greeting">
-        <div class="state">
-          <span>Good</span>
-          <img src="../assets/sun.png" alt="" />
-        </div>
-        <span>Afternoon!</span>
-      </div>
-      <div class="counter greeting flex flex__gap position__relative">
-        <div class="flex flex__column">
-          <span>Day</span>
-          <img src="../assets/feather.png" alt="" width="60px" />
-        </div>
-        <span class="font__xl">3</span>
-        <div class="position__absolute tag"><img src="../assets/expand_box.png" alt=""></div>
-      </div>
-      <div class="counter greeting flex flex__gap position__relative">
-        <div class="flex flex__column">
-          <div class="flex flex__gap w-100">
-            <span>Log</span>
-            <img src="../assets/add.png" alt="" width="60px" />
-          </div>
-          <span>Symptoms</span>
-        </div>
+    <slick-carousel :data="carouselConfig" :autoplay="20"></slick-carousel>
+    <div class="ask-lily-strip">
+      <div>
+        <span>Have menstrual questions? Ask Lily</span>
+        <img src="../assets/woman.png" alt="" width="60px" />
       </div>
     </div>
-    <slick-carousel :data="carouselConfig" autoplay="8"></slick-carousel>
   </div>
 </template>
 
@@ -42,13 +22,19 @@ export default {
     };
   },
   methods: {
-    loadConfig() {
-      fetchConfig().then((res) => {
-        this.carouselConfig = res.data.media.map((data) => {
-          return data.src.landscape;
-        });
-        console.log(this.carouselConfig);
+    async loadConfig() {
+      // fetchConfig().then((res) => {
+      const fetchedConfig = await fetchConfig();
+      fetchedConfig.data.media.map((data) => {
+        console.log("hello", data);
+        if (data.type === "Photo") {
+          this.carouselConfig.push(data?.src?.landscape);
+        } else {
+          this.carouselConfig.unshift(data?.video_files[2]?.link);
+        }
       });
+      console.log(this.carouselConfig);
+      // });
     },
   },
   mounted() {
@@ -60,42 +46,13 @@ export default {
 <style lang="less" scoped>
 @import "../styles/style.less";
 .dashboard-wrapper {
-  padding: 2rem;
+  // padding: 2rem;
   height: 100vh;
-  background-color: @primary-bg;
-  width: 70%;
-  margin: auto;
+  // background-color: @primary-bg;
+  width: 60%;
+  // margin: auto;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  .hero-widgets {
-    display: flex;
-    gap: 1rem;
-    .greeting {
-      font-weight: 500;
-      font-size: 3rem;
-      color: white;
-      margin: 0;
-      // width: 32%;
-      background: #488351;
-      border-radius: 15px;
-      padding: 1rem;
-
-      > div.state {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        img {
-          width: 60px;
-        }
-      }
-    }
-
-    .counter {
-      background: @love-bg;
-    }
-  }
 }
 </style>
